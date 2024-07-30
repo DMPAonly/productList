@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-show-table',
   standalone: true,
-  imports: [ NgFor ],
+  imports: [ NgFor, NgIf ],
   templateUrl: './show-table.component.html',
   styleUrl: './show-table.component.css'
 })

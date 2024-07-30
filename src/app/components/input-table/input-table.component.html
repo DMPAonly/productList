@@ -9,13 +9,13 @@
         <form class="form-group">
             <td>
                 <select class="form-control" (change)="onSelectedProduct($event)">
-                    <option default>Choose a product</option>
+                    <option selected disabled value="">Choose a product</option>
                     <option *ngFor="let p of products" [value]="p">{{p}}</option>
                 </select>
             </td>
             <td>
                 <select class="form-control" (change)="onSelectedQuantity($event)">
-                    <option default>Choose quantity</option>
+                    <option selected disabled value="">Choose quantity</option>
                     <option *ngFor="let q of quantity" [value]="q">{{q}}</option>
                 </select>
             </td>
@@ -26,5 +26,7 @@
     </div>
     </tr>
 </table>
-<button>Show Table</button>
+<button (click)="showTable()">Show Table</button>
+<div *ngIf="show">
 <app-show-table [productList]="rows"></app-show-table>
+</div>
