@@ -1,0 +1,30 @@
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let row of rows">
+        <div class="form-group">
+        <form class="form-group">
+            <td>
+                <select class="form-control" (change)="onSelectedProduct($event)">
+                    <option default>Choose a product</option>
+                    <option *ngFor="let p of products" [value]="p">{{p}}</option>
+                </select>
+            </td>
+            <td>
+                <select class="form-control" (change)="onSelectedQuantity($event)">
+                    <option default>Choose quantity</option>
+                    <option *ngFor="let q of quantity" [value]="q">{{q}}</option>
+                </select>
+            </td>
+            <td>
+                <button (click)="Add(row)">Add</button>
+            </td>
+        </form>
+    </div>
+    </tr>
+</table>
+<button>Show Table</button>
+<app-show-table [productList]="rows"></app-show-table>
