@@ -17,7 +17,9 @@ export class InputTableComponent {
   selected = {selectedProduct:'', selectedQuantity: 0};
   count = 1;
   show = false;
+
   Add(row: any){
+    let button = document.getElementById(row.id);
     this.show = false;
     if(this.selected.selectedProduct == '' || this.selected.selectedQuantity == 0){
       alert('Please choose a product and its quantity.');
@@ -27,6 +29,7 @@ export class InputTableComponent {
       this.count++;
       let obj = {id: this.count, selectedProduct:'', selectedQuantity: 0};
       if(this.rows.length < 8){
+        button?.setAttribute('disabled','');
         this.rows.push(obj);
       } else{
         alert("You can only choose maximum of 8 products");
@@ -34,6 +37,7 @@ export class InputTableComponent {
       console.log(this.rows);
       console.log(this.selected);
     }
+    this.selected = {selectedProduct: '', selectedQuantity: 0};
   }
 
   showTable(){
