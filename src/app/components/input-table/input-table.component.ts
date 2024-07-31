@@ -13,7 +13,7 @@ import { NgFor, NgIf } from '@angular/common';
 export class InputTableComponent {
   products : string[] = ['Pen', 'Pencil', 'Eraser', 'Sharpner', 'Ruler', 'Compass', 'Protactor'];
   quantity : number[] = [1, 2, 3, 4, 5];
-  rows = [{id:1, selectedProduct:'', selectedQuantity: 0}];
+  rows : {id: number, selectedProduct: string, selectedQuantity: number}[] = [{id:1, selectedProduct:'', selectedQuantity: 0}];
   selected = {selectedProduct:'', selectedQuantity: 0};
   count = 1;
   show = false;
@@ -35,7 +35,6 @@ export class InputTableComponent {
         alert("You can only choose maximum of 8 products");
       }
       console.log(this.rows);
-      console.log(this.selected);
     }
     this.selected = {selectedProduct: '', selectedQuantity: 0};
   }
@@ -55,5 +54,10 @@ export class InputTableComponent {
   onSelectedQuantity(event: any){
     this.show = false;
     this.selected.selectedQuantity = event.target.value;
+  }
+
+  getAvailableOptions(id : number){
+    const temp_array = this.rows.filter(row => row['selectedProduct'] !== '').map(row => row['selectedProduct']);
+    return this.products.filter((product) => (!temp_array.includes(product)) || temp_array.includes(this.rows[id-1].selectedProduct));
   }
 }
