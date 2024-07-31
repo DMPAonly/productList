@@ -11,7 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './input-table.component.css'
 })
 export class InputTableComponent {
-  products : string[] = ['Pen', 'Pencil', 'Eraser', 'Sharpner', 'Ruler', 'Compass', 'Protactor'];
+  products : string[] = ['Pen', 'Pencil', 'Eraser', 'Sharpner', 'Ruler', 'Compass', 'Protactor', 'Crayons'];
   quantity : number[] = [1, 2, 3, 4, 5];
   rows : {id: number, selectedProduct: string, selectedQuantity: number}[] = [{id:1, selectedProduct:'', selectedQuantity: 0}];
   selected = {selectedProduct:'', selectedQuantity: 0};
