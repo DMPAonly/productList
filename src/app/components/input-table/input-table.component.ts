@@ -41,7 +41,11 @@ export class InputTableComponent {
   }
 
   showTable(){
-    this.show = true;
+    if(this.rows[0].selectedProduct == ''){
+      alert('Please choose products and their quantity first.')
+    } else{
+      this.show = true;
+    }
   }
     
   onSelectedProduct(event: any){

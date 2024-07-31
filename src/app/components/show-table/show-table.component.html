@@ -8,14 +8,12 @@
         </th>
     </tr>
     <tr *ngFor="let product of productList">
-        <div *ngIf="product.selectedQuantity !== 0">
-        <td>
+        <td *ngIf="product.selectedQuantity !== 0">
             {{product.selectedProduct}}
         </td>
-        <td>
+        <td *ngIf="product.selectedQuantity !== 0">
             {{product.selectedQuantity}}
         </td>
-        </div>
     </tr>
 </table>
-<button (click)="speakOrder()">What's the order</button>
+<button class="btn-speak" (click)="speakOrder()">What's the order</button>

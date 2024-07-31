@@ -5,8 +5,6 @@
         <th></th>
     </tr>
     <tr *ngFor="let row of rows">
-        <div class="form-group">
-        <form class="form-group">
             <td>
                 <select class="form-control" (change)="onSelectedProduct($event)">
                     <option selected disabled value="">Choose a product</option>
@@ -20,13 +18,11 @@
                 </select>
             </td>
             <td>
-                <button id={{row.id}} (click)="Add(row)">Add</button>
+                <button id={{row.id}} class="btn-add" (click)="Add(row)">Add</button>
             </td>
-        </form>
-    </div>
     </tr>
 </table>
-<button (click)="showTable()">Show Table</button>
-<div *ngIf="show">
+<button class="btn-show-table" (click)="showTable()">Show Table</button>
+<div class="show-table-container" *ngIf="show">
 <app-show-table [productList]="rows"></app-show-table>
 </div>
