@@ -11,8 +11,8 @@ import { environment } from '../../../environments/environment';
 })
 export class ShowTableComponent {
   @Input() productList: {id: number, selectedProduct: string, selectedQuantity: number}[] = [];
-  url : string = environment.apiUrl; 
-  apiKey : string = environment.apiKey;
+  url : string = environment.API_URL; 
+  apiKey : string = environment.API_KEY;
   order: string = '';
   speakOrder(){
     this.order = '';
