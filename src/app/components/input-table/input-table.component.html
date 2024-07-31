@@ -18,11 +18,11 @@
                 </select>
             </td>
             <td>
-                <button id={{row.id}} class="btn-add" (click)="Add(row)">Add</button>
+                <button id={{row.id}} class="btn-add" (click)="Add(row)">ADD</button>
             </td>
     </tr>
 </table>
-<button class="btn-show-table" (click)="showTable()">Show Table</button>
+<button class="btn-show-table" (click)="showTable()">Show Order</button>
 <div class="show-table-container" *ngIf="show">
 <app-show-table [productList]="rows"></app-show-table>
 </div>
