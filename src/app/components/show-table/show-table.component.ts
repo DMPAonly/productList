@@ -24,7 +24,11 @@ export class ShowTableComponent {
       }
     }
     console.log(this.order);
-    new Audio(this.buildURL(this.order)).play();
+    try{
+      new Audio(this.buildURL(this.order)).play();
+    } catch(error){
+      console.log(error);
+    }
   }
   buildURL(str : string){
     return `${this.url}?key=${this.apiKey}&src=${str}&f=48khz_16bit_stereo`;
