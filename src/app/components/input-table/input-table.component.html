@@ -8,7 +8,7 @@
             <td>
                 <select class="form-control" (change)="onSelectedProduct($event)">
                     <option selected disabled value="">Choose a product</option>
-                    <option *ngFor="let p of getAvailableOptions(row.id)" [value]="p">{{p}}</option>
+                    <option *ngFor="let p of products" [value]="p">{{p}}</option>
                 </select>
             </td>
             <td>
