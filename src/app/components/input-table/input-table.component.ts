@@ -12,7 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class InputTableComponent {
   products : string[] = ['Pen', 'Pencil', 'Eraser', 'Sharpner', 'Ruler', 'Compass', 'Protactor', 'Crayons'];
-  quantity : number[] = [0, 1, 2, 3, 4, 5];
+  quantity : number[] = [1, 2, 3, 4, 5];
   rows : {id: number, selectedProduct: string, selectedQuantity: number}[] = [{id:1, selectedProduct:'', selectedQuantity: 0}];
   selected = {selectedProduct:'', selectedQuantity: 0};
   count = 1;
@@ -21,31 +21,22 @@ export class InputTableComponent {
   Add(row: any){
     let button = document.getElementById(row.id);
     this.show = false;
-    console.log(this.selected);
-    if(this.selected.selectedProduct == ''){
+    if(this.selected.selectedProduct == '' || this.selected.selectedQuantity == 0){
       alert('Please choose a product and its quantity.');
     } else{
-      if(this.selected.selectedQuantity == 0){
-        alert("Please choose quantity higher than 0");
+      row.selectedProduct = this.selected.selectedProduct;
+      row.selectedQuantity = this.selected.selectedQuantity;
+      this.count++;
+      let obj = {id: this.count, selectedProduct:'', selectedQuantity: 0};
+      if(this.rows.length < 8){
+        button?.setAttribute('disabled','');
+        this.rows.push(obj);
       } else{
-        if(this.redundant()){
-          alert("Please choose a higher qunatity in above rows.")
-        } else{
-          row.selectedProduct = this.selected.selectedProduct;
-          row.selectedQuantity = this.selected.selectedQuantity;
-          this.count++;
-          let obj = {id: this.count, selectedProduct:'', selectedQuantity: 0};
-          if(this.rows.length < 8){
-            button?.setAttribute('disabled','');
-            this.rows.push(obj);
-          } else{
-            alert("You can only choose maximum of 8 products");
-          }
-          console.log(this.rows);
-          this.selected = {selectedProduct: '', selectedQuantity: 0};
-        }
+        alert("You can only choose maximum of 8 products");
       }
+      console.log(this.rows);
     }
+    this.selected = {selectedProduct: '', selectedQuantity: 0};
   }
 
   showTable(){
@@ -65,12 +56,8 @@ export class InputTableComponent {
     this.selected.selectedQuantity = event.target.value;
   }
 
-  redundant(){
-    const data = this.rows.find((row) => row.selectedProduct == this.selected.selectedProduct);
-    if(data){
-      return true;
-    } else{
-      return false;
-    }
+  getAvailableOptions(id : number){
+    const temp_array = this.rows.filter(row => row['selectedProduct'] !== '').map(row => row['selectedProduct']);
+    return this.products.filter((product) => (!temp_array.includes(product)) || temp_array.includes(this.rows[id-1].selectedProduct));
   }
 }
